@@ -1,0 +1,103 @@
+@import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
+
+:root{
+  --textColor :  color: rgb(42, 39, 39);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* color: rgba(255, 0, 0, 0.577); */
+}
+
+.App {
+  width: 100%;
+  /* max-width: 1100px; */
+  /* margin: 0 auto; */
+  position: relative;
+}
+
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.475);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.traffic-sign-image {
+  width: 100%;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: 90px 1fr 20px;
+  margin-bottom: 1rem;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.trafic-sign-input {
+  padding: .3rem 0;
+}
+
+.title {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.add-traffic-sign-button {
+  padding: 1rem;
+  background: lightcoral;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-traffic-sign-button:hover{
+  opacity: .9;
+}
+
+.add-traffic-sign-button:active{
+  opacity: .8;
+}
+
+.input[type='checkbox']{
+  cursor: pointer;
+}
+
+.signs {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 2rem auto;
+  max-height: 500px;
+  overflow-y: scroll;
+  text-align: center;
+  border: 1px solid black;
+}
+
+li {
+  text-transform: capitalize;
+}
+
+

@@ -1,0 +1,111 @@
+@import 'https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+
+:root{
+    --textColor :  color: rgb(42, 39, 39);
+}
+
+header {
+    padding: .2rem .5rem;
+    box-shadow: 1px 1px 3px rgba(74, 2, 2, 0.4);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    position: relative;
+    font-family: "Kanit", sans-serif;
+}
+.header-title-group{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-self: self-start;
+
+    position: relative;
+}
+
+.title-icon{
+    /* margin-bottom: .9rem; */
+    z-index: 999;
+}
+
+.header-title{
+    font-weight: 400;
+    font-size: 1.2rem;
+    width: max-content;
+    align-self: center;
+}
+
+.header-burger-icon{
+    justify-self: end;
+    align-self: center;
+}
+
+.header-nav-bar{
+    position: absolute;
+    background: white;
+    top: 100%;
+    /* left: 100%; */
+    width: 100%;
+    text-align: center;
+
+    transform-origin: top;
+    z-index: 99;
+}
+
+.header-nav-bar ul{
+    list-style: none;
+}
+
+.header-nav-bar li{
+    margin: 1.2rem;
+    font-weight: 400;
+}
+
+.header-nav-bar a{
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: black;
+}
+
+@media (min-width: 1024px) {
+    header{
+        grid-template-columns: 2fr 3fr;
+        padding: .5rem;
+    }
+
+    .header-nav-bar{
+        position: static;
+        top: 0;
+        background-color: white;
+
+        display: flex;
+        justify-content: end;
+    }
+
+    .header-burger-icon{
+        display: none;
+    }
+
+    .header-nav-bar ul{
+        /* background: yellow; */
+        display: flex;
+    }
+
+    .header-nav-bar a{
+        font-size: 1.1rem;
+    }
+
+    .title-icon{
+        margin-bottom: .7rem;
+    }
+    
+    .header-title{
+        font-weight: 300;
+        font-size: 1.7rem;
+    }
+
+    .header-title-group{
+        margin-left: 1rem;
+    }
+
+}
