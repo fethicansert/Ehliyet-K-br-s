@@ -9,9 +9,10 @@ header {
     box-shadow: 1px 1px 3px rgba(74, 2, 2, 0.4);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
     position: relative;
     font-family: "Kanit", sans-serif;
+    z-index: 999;
+    background: white;
 }
 .header-title-group{
     display: grid;

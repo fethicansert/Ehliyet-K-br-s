@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive'
 const Navbar = ({ isClose, setIsClose }) => {
 
-    const isDesktopOrLaptop = useMediaQuery({
+    const isDesktop = useMediaQuery({
         query: '(min-width: 1024px)'
-    })
+    });
 
     const navMobileStyle = {
         scale: isClose ? '1 0' : '1 1',
@@ -28,22 +28,22 @@ const Navbar = ({ isClose, setIsClose }) => {
     }
 
     return (
-        <nav className='header-nav-bar' style={!isDesktopOrLaptop ? navMobileStyle : navDesktopStyle}>
+        <nav className='header-nav-bar' style={!isDesktop ? navMobileStyle : navDesktopStyle}>
             <ul>
-                <li style={!isDesktopOrLaptop ? liMobileStyle : liDesktopStyle}>
+                <li style={!isDesktop ? liMobileStyle : liDesktopStyle}>
                     <NavLink onClick={() => setIsClose(!isClose)} to={'/'}>Ana Sayfa</NavLink>
                 </li>
-                <li style={!isDesktopOrLaptop ? liMobileStyle : liDesktopStyle}>
-                    <NavLink onClick={() => setIsClose(!isClose)} to={'/ehliyet-okullari'}>Şöför Okulları</NavLink>
+                <li style={!isDesktop ? liMobileStyle : liDesktopStyle}>
+                    <NavLink onClick={() => setIsClose(!isClose)} to={'/sofor-okullari'}>Şöför Okulları</NavLink>
                 </li>
-                <li style={!isDesktopOrLaptop ? liMobileStyle : liDesktopStyle}>
+                <li style={!isDesktop ? liMobileStyle : liDesktopStyle}>
                     <NavLink onClick={() => setIsClose(!isClose)} to={'/levhalar'}>Levhalar</NavLink>
                 </li>
-                <li style={!isDesktopOrLaptop ? liMobileStyle : liDesktopStyle}>
+                <li style={!isDesktop ? liMobileStyle : liDesktopStyle}>
                     <NavLink onClick={() => setIsClose(!isClose)} to={'/sorular-menu'}>Soru Çöz</NavLink>
                 </li>
 
-                <li style={!isDesktopOrLaptop ? liMobileStyle : liDesktopStyle}>
+                <li style={!isDesktop ? liMobileStyle : liDesktopStyle}>
                     <NavLink onClick={() => setIsClose(!isClose)} to={'/kaydol'}>Kaydol</NavLink>
                 </li>
             </ul>

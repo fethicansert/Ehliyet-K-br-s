@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Triangle } from 'react-loader-spinner';
 import axios from '../../api/axios';
 import QuestionCard from './QuestionCard';
 import { useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import Popup from './Popup';
 
 
 const QUESTIONS_URL = '/traffic-sign-question';
@@ -12,10 +14,21 @@ const QuestionPage = () => {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const [shuffledQuestions, setShuffledOuestions] = useState([]);
     const [error, setError] = useState(false);
-    //get param to choose which questions to fetch
-    const {soru} = useParams(); 
+    const { soru_turu } = useParams();
+
+    
+    //pop state for show or not show popup message
+    const [pop, setPop] = useState(false);
+
+    //changing styles with according to size of witdh
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1024px)'
+    });
+
+    const questionPageStyle = {
+        // height: !isDesktop  ? 'calc(100vh - 50.35px)' : 'calc(100vh - 80.89px)'
+    }
 
     useEffect(() => {
         //controller for abort request if needed and isMounted for decide to set or unset state
@@ -25,12 +38,17 @@ const QuestionPage = () => {
         const getQuestions = async () => {
 
             try {
+                //set param to decide which api to use in server
+                const param = soru_turu === 'karisik' ? '' : soru_turu;
+
                 //get quetions from db
-                const response = await axios.get(`${QUESTIONS_URL}/${soru}`, { signal: controller.signal });
+                const response = await axios.get(`${QUESTIONS_URL}/${param}`
+                    , { signal: controller.signal });
                 const questions = response.data;
 
                 //if comp not unmounted set question for no memory leak
                 if (isMounted) setQuestions(questions);
+
 
             } catch (err) {
                 setError(true);
@@ -43,9 +61,8 @@ const QuestionPage = () => {
 
         getQuestions();
 
-         //ABORT REQUEST AND set ISMOUNTED to false to not execute unnessary state update
+        //ABORT REQUEST AND set ISMOUNTED to false to not execute unnessary state update
         const cleanUp = () => {
-           
             controller.abort();
             isMounted = false;
         }
@@ -53,54 +70,67 @@ const QuestionPage = () => {
 
     }, []);
 
-    //every time shuffle the current questions array to get random questions
-    useEffect(() => {
 
-        //learn this shuffled function
-        function shuffleArray(arr) {
-            const array = arr.slice();
-            for (var i = array.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-            return array;
-        };
-        //shuflle current question
-        const shuffledArray = shuffleArray(questions);
-
-        //set shuffled question
-        setShuffledOuestions(shuffledArray);
-
-    }, [questions])
-
-    //changing display to center loading spinner
-    const loadingStyle = {
-        display: isLoading ? 'flex' : 'block',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: isLoading ? '80vh' : 'fit-content',
-    };
+    //Select header according to soru-turu param
+    const headerName = useMemo(() => {
+        let header;
+        switch (soru_turu) {
+            case 'karisik':
+                header = 'Karışık Levha Soruları';
+                break;
+            case 'tehlike-ikaz':
+                header = 'Tehlike Ve Ikaz Levha Soruları';
+                break
+            case 'yasak-tahdit':
+                header = 'Yasak Ve Tahdit Levha Soruları';
+                break
+            case 'durma-parketme':
+                header = 'Durma Ve Park Etme Levha Soruları';
+                break
+            case 'bilgiverici':
+                header = 'Bilgi Verici Levha Sorulari';
+                break
+            case 'otoyol':
+                header = 'Otoyol Levha Soruları';
+                break
+            default:
+                break;
+        }
+        return header;
+    }, [soru_turu]);
 
     //set error page
     return (
-        <div className='question-page' style={loadingStyle}>
-            {
-                isLoading
-                    ? <Triangle
-                        width='250'
-                        height='250'
-                        color='red'
-                    />
-                    : !error
-                        ? <QuestionCard
-                            question={shuffledQuestions[currentQuestionIndex]}
-                            setCurrentQuestionIndex={setCurrentQuestionIndex}
+        <>
+            <div className='question-page'
+                style={{ filter: pop ? 'blur(2px)' : 'unset', pointerEvents: pop ? 'none' : 'unset' }}>
+                {
+                    isLoading
+                        ? <Triangle
+                            width='250'
+                            height='250'
+                            color='red'
                         />
-                        : <p>ERROR</p>
-            }
-        </div>
+                        : !error
+                            ? <QuestionCard
+                                headerName={headerName}
+                                questionLength={questions.length}
+                                currentQuestionIndex={currentQuestionIndex}
+                                question={questions[currentQuestionIndex]}
+                                setCurrentQuestionIndex={setCurrentQuestionIndex}
+                                setPop={setPop}
+                                pop={pop}
+                            />
+                            : <p>ERROR</p>
+                }
+            </div>
+            {pop && <Popup
+                text={"Bu soruyu çalışmam lazım listesine eklemek istediğine emin misin ?"}
+                onNoClick={() => setPop(false)}
+                onYesClick={() => setPop(false)}
+            />}
+        </>
+
     );
 }
 

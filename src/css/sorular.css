@@ -1,10 +1,4 @@
-.pass-question-button{
-  position: absolute;
-  right: 0%;
-  margin-right: .3rem;
-  color: #233E94;
-}
-
+/* SORULAR MENU CSS */
 .sorular-menu-page {
   margin-top: 1rem;
   font-family: "Montserrat", sans-serif;
@@ -40,19 +34,34 @@
   width: 275px;
   margin: 0 auto;
   cursor: pointer;
-
   transition: transform 200ms ease;
-  /* border: 1px solid rgba(168, 168, 168, 0.1);
-  border-radius: 20px; */
 }
 
 .box:hover {
   transform: translateY(-3%);
-
 }
 
 .soru-levha-img {
   width: 100%;
+}
+
+/* SORU CARD CSS */
+
+.question-page {
+  height: calc(100vh - 50.35px);
+  position: relative;
+}
+
+.question-card {
+  margin: 1rem auto;
+  position: relative;
+  width: 95%;
+  /* max-width: 900px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.3rem;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
 }
 
 .traffic-sign-image {
@@ -62,46 +71,24 @@
   margin: 0rem 0;
 }
 
-.question-page {
-  height: calc(100vh - 50.35px);
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-}
-
-.question-page h2 {
-  margin: .5rem 0;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  font-size: 1.1rem;
-}
-
-.question-card {
-  position: relative;
-  width: 93%;
-  /* max-width: 900px; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.3rem;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
-}
 
 .question-answer-group {
   width: 100%;
   font-size: .9rem;
-  margin: 1.5rem 0;
+  margin-top: 1.5rem ;
   gap: 17px 0;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: repeat(4,50px) 10px repeat(2, 50px);
   align-items: center;
   justify-items: center;
 }
 
-.answer-button {
+.answer-button,
+.pass-question-button,
+.save-question-button {
   width: 95%;
-  padding: 1rem 0;
+  padding: 1rem .2rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -112,6 +99,153 @@
   color: var(--textColor);
 }
 
+.pass-question-button{
+  background: #233E94;
+  color: white;
+  text-transform: uppercase;
+}
+
+.save-question-button{
+  background: #FF5F1F;
+  color: white;
+  text-transform: uppercase;
+} 
+
+.pass-question-button:hover,
+.save-question-button:hover {
+  opacity: .9;
+}
+
+.button-seperater{
+  width: 95%;
+  border: 1px dashed rgba(106, 142, 35, 0.731);
+}
+
+.popup{
+  position: fixed;
+  width: 80%;
+  height: 200px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: .5rem;
+  font-size: 1.3rem;
+  line-height: 30px;
+  text-align: center;
+  z-index: 99;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-button-group{
+  margin-top: 1.2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* background: red; */
+}
+
+.popup-yes-button,
+.popup-no-button {
+  font-size: 1.2rem;
+  padding: .6rem 1.4rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+  color: white;
+  font-family: inherit;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.popup-no-button{
+  background: red;
+  margin-left: 2rem;
+}
+
+.popup-yes-button {
+  background: green;
+}
+
+.question-informarion-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.question-card h2,
+.question-number {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+/* LOADING TRIANGLE STYLE */
+.sc-beySPh{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user-question-finish-box{
+  text-align: center;
+  width: 95%;
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+  font-size: 1.5rem;
+  line-height: 35px;
+}
+
+.user-question-finish-box span {
+  font-size: 1.8;
+  font-weight: 500;
+}
+
+.user-question-finish-button-group{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin:  1rem auto;
+}
+
+.user-question-finish-button-group button {
+  font-size: 1.2rem;
+  padding: .9rem .7rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+  color: white;
+  font-family: inherit;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.question-again-button{
+  background: #233E94;
+}
+
+.go-soru-menu-button {
+  background: #FF5F1F;
+  margin-top: 1rem;
+}
+
+
+/* TABLET SIZE */
 @media (min-width: 768px) {
   .sorular-menu-grid {
     grid-template-columns: 1fr 1fr;
@@ -124,20 +258,41 @@
   }
 }
 
+/* LAPTOP SIZE */
 @media (min-width: 1024px) {
+  .button-seperater{
+    width: 95%;
+    /* border: 2px dashed olivedrab; */
+    grid-column: 1 / 3;
+  }
 
+  .pass-question-button {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+  }
+
+  .save-question-button {
+    grid-column: 1 / 2;
+  }
   .question-page{
     height: calc(100vh - 80.89px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .question-answer-group {
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 50px 50px 10px 50px;
     gap: 20px 5px;
     max-width: 1200px;
-    margin: 1.7rem 0;
+    margin-top: 1rem;
   }
 
-  .answer-button {
+  .answer-button,
+  .pass-question-button,
+  .save-question-buttona {
     width: 90%;
     font-weight: 600;
     font-size: .95rem;
@@ -151,8 +306,7 @@
   }
 
   .question-card {
-    padding: 1.5rem 2rem;
-    margin: 0;
+    /* padding: 1.5rem; */
     max-width: 1100px;
   }
 
@@ -167,14 +321,15 @@
     width: 315px;
   }
 
-  .question-page h2 {
-    font-weight: 400;
-    font-size: 1.5rem;
+  .question-card h2,
+  .question-number {
+    font-weight: 600;
+    font-size: 1rem;
   }
 
+ 
 }
 
- 
 @media (orientation: landscape) and (max-height: 450px) {
   .question-page {
     justify-content: unset;

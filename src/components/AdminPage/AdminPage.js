@@ -6,7 +6,9 @@ const AdminPage = ({setSigns}) => {
 
     const [image, setImage] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
+    const [type, setType] = useState('yasak-tahdit');
     const getRandomAnswer = useGetRandomAnswer();
+
     
     const addTrafficSing = async (e) => {
 
@@ -46,17 +48,18 @@ const AdminPage = ({setSigns}) => {
         });
 
         const bodyContent = {
-            image: image,
+            image,  // => image: image_str
             choiceA,
             choiceB,
             choiceC,
             choiceD,
+            type
         };
         
         try {
             const response = await axios.post('/traffic-sign-question', bodyContent);
-            setSigns(prevState => [...prevState, response.data]);
             console.log(response);
+            // setImage('');
 
         } catch (err) {
             console.log(err);
@@ -83,15 +86,29 @@ const AdminPage = ({setSigns}) => {
                     </div>
 
                     <div className='input-group'>
-                        <label htmlFor='answerA'>
+                        <label htmlFor='correctAnswer'>
                             Correct Answer:
                         </label>
                         <input
                             className='trafic-sign-input'
-                            id='answerA'
+                            id='correctAnswer'
                             type='text'
                             value={correctAnswer}
                             onChange={(e) => setCorrectAnswer(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div className='input-group'>
+                        <label htmlFor='type'>
+                            Type:
+                        </label>
+                        <input
+                            className='trafic-sign-input'
+                            id='type'
+                            type='text'
+                            value={type}
+                            onChange={(e) => setType(e.target.value)}
                             required
                         />
                     </div>
