@@ -1,20 +1,25 @@
 @import 'https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
 
-:root{
-    --textColor :  color: rgb(42, 39, 39);
+:root {
+    --headerColor: black;
+    --textColor: color: rgb(42, 39, 39);
 }
 
 header {
-    padding: .2rem .5rem;
-    box-shadow: 1px 1px 3px rgba(74, 2, 2, 0.4);
+    padding: .5rem 1rem .5rem .3rem;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
     position: relative;
-    font-family: "Kanit", sans-serif;
+    /* font-family: "Kanit", sans-serif; */
+    /* font-family: "Outfit", sans-serif; */
+    font-family: "DM Sans", sans-serif;
     z-index: 999;
     background: white;
 }
-.header-title-group{
+
+.header-title-group {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
@@ -24,89 +29,142 @@ header {
     position: relative;
 }
 
-.title-icon{
+.header-icon {
+    width: 40px;
+}
+
+.title-icon {
     /* margin-bottom: .9rem; */
     z-index: 999;
 }
 
-.header-title{
-    font-weight: 400;
-    font-size: 1.2rem;
+.header-title {
+    margin-top: .2rem;
+    font-weight: 475;
+    font-size: 1rem;
     width: max-content;
     align-self: center;
 }
 
-.header-burger-icon{
-    justify-self: end;
-    align-self: center;
+.header-user-icon {
+    margin-bottom: .2rem;
 }
 
-.header-nav-bar{
+.header-burger-icon {
+    margin-left: .8rem;
+}
+
+.header-nav-bar {
+    font-family: "Outfit", sans-serif;
     position: absolute;
     background: white;
     top: 100%;
-    /* left: 100%; */
+    /* right: 0; */
     width: 100%;
     text-align: center;
-
+    font-weight: 450;
     transform-origin: top;
     z-index: 99;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.35);
+    font-size: 1.1rem;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.451); */
 }
 
-.header-nav-bar ul{
+.header-nav-bar ul {
     list-style: none;
 }
 
-.header-nav-bar li{
+.header-nav-bar li {
     margin: 1.2rem;
-    font-weight: 400;
 }
 
-.header-nav-bar a{
+.header-nav-bar a {
     text-decoration: none;
-    font-size: 1.3rem;
-    color: black;
+
+    color: rgba(0, 0, 0, 0.75);
+    position: relative;
+}
+
+.header-nav-bar a.active::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    height: 3px;
+    border-radius: 3px;
+    background: red;
+    bottom: -35%;
 }
 
 @media (min-width: 1024px) {
-    header{
+    header {
         grid-template-columns: 2fr 3fr;
         padding: .5rem;
     }
 
-    .header-nav-bar{
+    .header-icon {
+        width: 50px;
+    }
+
+    .header-nav-bar {
         position: static;
         top: 0;
-        background-color: white;
+
 
         display: flex;
         justify-content: end;
+        box-shadow: none;
+        font-size: 1.1rem;
     }
 
-    .header-burger-icon{
+    .header-burger-icon,
+    .header-user-icon {
         display: none;
     }
 
-    .header-nav-bar ul{
+    .header-nav-bar ul {
         /* background: yellow; */
         display: flex;
     }
 
-    .header-nav-bar a{
-        font-size: 1.1rem;
+    .header-nav-bar a {
+        color: rgba(0, 0, 0, 0.85);
+        position: relative;
     }
 
-    .title-icon{
+    .title-icon {
         margin-bottom: .7rem;
     }
-    
-    .header-title{
+
+    .header-title {
         font-weight: 300;
         font-size: 1.7rem;
     }
 
-    .header-title-group{
+    .header-title-group {
         margin-left: 1rem;
     }
+
+    .header-nav-bar a::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) scale(0, 0);
+        width: 98%;
+        height: 3px;
+        border-radius: 3px;
+        background: rgba(255, 0, 0, 1);
+        bottom: -35%;
+        transition: transform 200ms ease;
+    }
+
+    .header-nav-bar a:hover::after {
+        display: block;
+        transform: translateX(-50%) scale(1, 1);
+    }
+
 
 }

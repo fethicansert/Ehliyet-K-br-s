@@ -1,20 +1,37 @@
-import React, { useState } from 'react'
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GiTriangleTarget } from "react-icons/gi";
-import { RxHamburgerMenu } from "react-icons/rx";
 import kibrisIcon from '../../images/header-icon.png';
 import Navbar from './Navbar';
-const Header = () => {
+import { RxHamburgerMenu } from "react-icons/rx";
+import { RiUser6Fill } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
-    const [isClose, setIsClose] = useState(true);
+const Header = ({isClose, setIsClose}) => {
+
+    const navigate = useNavigate();
+    const { auth } = useAuth();
 
     return (
-        <header>
+        <header onClick={(e) =>  e.stopPropagation()}>
             <div className='header-title-group'>
-                <img src={kibrisIcon} width={'50px'}></img>
-                <h1 className='header-title'>Ehliyet Kibris</h1>
+                <img src={kibrisIcon} className='header-icon'></img>
+                <h1 className='header-title'>Ehliyet Kıbrıs</h1>
             </div>
-            <GiHamburgerMenu onClick={() => {setIsClose(!isClose)}} size={'30'} className='header-burger-icon' />
+            <RiUser6Fill 
+                size={'22'} 
+                className='header-user-icon'
+                onClick={() => {
+                    navigate('/user');
+                    setIsClose(true);
+                }}
+            />
+            <RxHamburgerMenu 
+                onClick={(event) => {
+                    event.stopPropagation();
+                    setIsClose(!isClose);
+                }} 
+                size={'22'} 
+                className='header-burger-icon'
+            />
             <Navbar isClose={isClose} setIsClose={setIsClose}/>
         </header>
     )

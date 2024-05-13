@@ -47,9 +47,9 @@ const tehlike_ve_ikaz = [
 ];
 
 const yasak_ve_tahdit = [
-    'yol ver',
-    'dur',
-    'karşıdan gelene yol ver',
+    'ana yoldaki trafiğe yol veriniz',
+    'dur ve yol ver',
+    'karşıdan gelen araçlara yol veriniz',
     'taşıt giremez',
     'araçlara kapalı yol',
     'motosikler dısındaki moturlu taşıtlar giremez',
@@ -79,9 +79,9 @@ const yasak_ve_tahdit = [
     'taşıt geçmek yasaktır',
     'kamyonlar taşıt geçemez',
     'azami hız 50',
-    'seli ikaz cihazları kullanılamaz',
+    'sesli ikaz cihazları kullanılamaz',
     'gümrük durmadan geçilmez',
-    'bütün yasaklama ve sınıralamarın sonu',
+    'bütün yasaklama ve sınırlamaların sonu',
     'hız sınırmalası sonu',
     'geçme yasağının sonu',
     'sağa dönünüz',

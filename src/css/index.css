@@ -1,8 +1,9 @@
 @import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
-
+@import 'https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Heebo:wght@100..900&family=Outfit:wght@100..900&display=swap';ş
 :root{
-  --textColor :  color: rgb(42, 39, 39);
+  --textColor :  black;
 }
 
 * {
@@ -10,6 +11,10 @@
   padding: 0;
   box-sizing: border-box;
   /* color: rgba(255, 0, 0, 0.577); */
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 .App {

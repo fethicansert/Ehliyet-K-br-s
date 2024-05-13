@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import QuestionPage from "./components/QuestionPage/QuestionPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import Header from "./components/Header/Header";
@@ -7,27 +7,52 @@ import HomePage from "./components/Homepage/HomePage";
 import Levhalar from './components/Levhalar/Levhalar';
 import Register from './components/Register/Register';
 import QuestionsMenu from './components/QuestionPage/QuestionsMenu';
-// import HomePage from "./components/HomePage/HomePage";
+import Login from './components/Register/Login';
+import SoforOkullari from './components/SoforOkullariPage/SoforOkullari';
+import User from './components/User/User';
+import RequireAuth from './middleware/RequireAuth';
+import PersistLogin from './middleware/PersistLogin';
+
 
 function App() {
+ 
+  const [isClose, setIsClose] = useState(true);
+  const appRef = useRef();
 
   return (
-    <div className="App">
-      <Header />
+    <div className="App" ref={appRef} onClick={() => setIsClose(true)}>
+
+      <Header isClose={isClose} setIsClose={setIsClose} />
+
       <Routes>
 
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path='/sofor-okullari' element={<Register />} />
-        <Route path='/levhalar' element={<Levhalar />} />
-        <Route path='/kaydol' element={<Register />} />
+        <Route element={<PersistLogin />}>
 
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="/sorular-menu" element={<QuestionsMenu />}/>
+          <Route path='/kaydol' element={<Register />} />
 
-        <Route path='/sorular/:soru' element={<QuestionPage />}></Route>
+          <Route path='/giris-yap' element={<Login />} />
 
-        <Route path="/admin" element={<AdminPage />}></Route>
+          <Route path='/sofor-okullari' element={<SoforOkullari />} />
 
+          <Route path='/levhalar' element={<Levhalar />} />
+
+          <Route path="/sorular" element={<QuestionsMenu />} />
+
+          <Route path='/sorular/:soru_param' element={<QuestionPage />} />
+
+          <Route element={<RequireAuth />}>
+            <Route path="/user" element={<User />} />
+          </Route>
+
+          <Route element={<RequireAuth />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+
+        </Route>
+
+        <Route path='*' element={<p>Missing Page</p>} />
 
       </Routes>
 

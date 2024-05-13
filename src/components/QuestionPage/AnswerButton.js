@@ -1,13 +1,15 @@
 import React, { useState, useRef } from 'react'
+import useQuestion from '../../hooks/useQuestion';
+const AnswerButton = ({ choice, letter}) => {
 
-const AnswerButton = ({ choice, setCurrentQuestionIndex, correctAnswersRef }) => {
-
+    const { isSavedQuestionRef, setIsDuplicateQuestion, setCurrentQuestionIndex, correctAnswersRef } = useQuestion();
+    
    //initial Style of Button
     const [style, setStyle] = useState({
         backgroundColor: 'white',
-        color: 'rgb(92, 68, 68)',
-        boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.47)'
+        color: 'rgba(0, 0, 0, .85)'
     });
+
 
     const checkAnswer = (isCorrect) => {
 
@@ -18,7 +20,9 @@ const AnswerButton = ({ choice, setCurrentQuestionIndex, correctAnswersRef }) =>
             //time out allow users to see green button color
             setTimeout(() => {
                 setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-            }, 150)
+                setIsDuplicateQuestion(false);
+                isSavedQuestionRef.current = false;
+            }, 250)
         } else {
             //if answer notCorrect change style of button to red 
             setStyle(prevStyle => ({ ...prevStyle, backgroundColor: 'rgb(208, 54, 54)', color: 'white' }))
@@ -33,7 +37,11 @@ const AnswerButton = ({ choice, setCurrentQuestionIndex, correctAnswersRef }) =>
             onMouseOver={() => setStyle(style => ({ ...style, outline: '2px solid rgba(23, 150, 196, 0.774)' }))}
             onMouseLeave={() => setStyle(style => ({ ...style, outline: 'none' }))}
         >
-            {choice.answer}
+            <div className='button-choice-container'>
+                <span className='button-choice-letter'>{letter}</span>
+                <p className='button-choice-text'>{choice.answer}</p>
+            </div>
+          
         </button>
     )
 }
