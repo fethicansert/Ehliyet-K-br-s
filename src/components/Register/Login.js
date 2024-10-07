@@ -12,6 +12,7 @@ const LOGIN_URL = '/auth';
 const Login = () => {
 
     const location = useLocation();
+    
     const fromLocation = location?.state?.from.pathname || '/';
 
     const [user, setUser] = useLocalStorage('user', '');

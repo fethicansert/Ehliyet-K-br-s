@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL =  'http://192.168.3.250:3166';
+const BASE_URL = 'http://192.168.3.91:3166';
 // http://192.168.3.250:3000
 // http://localhost:3166
 

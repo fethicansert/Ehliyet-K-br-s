@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import useSetHeader from '../../hooks/useSetHeader';
 import useAuth from '../../hooks/useAuth';
 
-const SAVE_QUESTION = '/users';
+const SAVE_QUESTION = '/user_questions';
 
 const QuestionCard = ({ question, pop, setPop, questionLength, setIsPopLoading }) => {
 

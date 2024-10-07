@@ -92,8 +92,11 @@ const Register = () => {
     };
 
     try {
-      await axios.post(REGISTER_URL, bodyContent);
-      navigate('/giris-yap');
+      const res = await axios.post(REGISTER_URL, bodyContent);
+      if (res.status === 201) {
+        navigate('/giris-yap');
+      }
+
     } catch (err) {
       if (err?.response?.status === 409) {
         userDispatch({ type: USER_ACTION.SET_IS_DUPLICATE_USERNAME, payload: true });

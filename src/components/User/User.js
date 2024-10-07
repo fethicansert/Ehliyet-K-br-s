@@ -6,7 +6,6 @@ import axios from '../../api/axios';
 import useQuestion from '../../hooks/useQuestion';
 
 
-
 const User = () => {
     const { setCurrentQuestionIndex, setQuestions } = useQuestion();
     const { auth } = useAuth();
@@ -15,13 +14,13 @@ const User = () => {
 
     const navigateChoosenQusetion = async (param) => {
 
-        try{
+        try {
             // const response = await axios.get(`${USER_QUSETION_URL}/${auth.user}`);
             // setQuestions(response.data);
             setQuestions([]);
             setCurrentQuestionIndex(0);
             navigate(`/sorular/user-${auth?.user}`);
-        } catch(err){
+        } catch (err) {
             console.log(err);
         }
 
@@ -30,7 +29,7 @@ const User = () => {
     const handleLogout = async () => {
         console.log('logout');
         await logout();
-        navigate('/',{ replace: true} );
+        navigate('/', { replace: true });
     }
 
 
